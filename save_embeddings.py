@@ -28,12 +28,16 @@ def save_embeddings(train_dataset, batch_size, graph_model, text_model, name_exp
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
     # create_folders_if_not_exist(f'./embeddings/graph/{name_exp}/_')
     if not text:
-        path = f'/Data/CTey/embeddings/graph/{name_exp}/'
-        print('Saving embeddings for the graph at path:', path)
-    if text:
-        path = f'/Data/CTey/embeddings/text/{name_exp}/'
-        print('Saving embeddings for the text at path:', path)
-    # create_folders_if_not_exist(path +'_')
+        path_graph = f'./embeddings/graph/{name_exp}/'
+        if not os.path.exists(path_graph):
+            raise FileNotFoundError(f"Path does not exist: {path_graph}")
+        print('Saving embeddings for the graph at path:', path_graph)
+    else:
+        path_text = f'./Data/embeddings/text/{name_exp}/'
+        if not os.path.exists(path_text):
+            raise FileNotFoundError(f"Path does not exist: {path_text}")
+        print('Saving embeddings for the text at path:', path_text)
+
     with torch.no_grad():
 
         # for idx, batch in tqdm(enumerate(train_loader)):
@@ -52,9 +56,9 @@ def save_embeddings(train_dataset, batch_size, graph_model, text_model, name_exp
                 
             for i, latent in enumerate(latents):
                 if not text:
-                    np.save(f'/Data/CTey/embeddings/graph/{name_exp}/{idx * batch_size + i}.npy', latent.cpu())
+                    np.save(path_graph + f'{idx * batch_size + i}.npy', latent.cpu())
                 if text:
-                    np.save(f'/Data/CTey/embeddings/text/{name_exp}/{idx * batch_size + i}.npy', latent.cpu())
+                    np.save(path_text + f'{idx * batch_size + i}.npy', latent.cpu())
          
 
 if __name__ == '__main__':
