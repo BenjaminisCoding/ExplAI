@@ -1,0 +1,14 @@
+# Python version: 3.8
+
+# List of packages
+numpy
+torch
+matplotlib
+networkx
+scikit-learn
+pandas
+tslearn
+gensim
+lfxai 
+transformers
+torch-geometric  
