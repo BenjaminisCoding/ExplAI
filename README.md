@@ -6,7 +6,7 @@ The experiments can be run using the notebooks experiments_graphs.ipynb and expe
 
 I modified the src/lfxai/explanations/examples.py and src/lfxai/explanations/features.py files. 
 For the optimization process of the Simplex method, I introduced an early stopping criterion, since I found that the n_epochs parameter indicated of 5000 was in most cases not enough. 
-For the features method, I introduced the new score function to compute the feature importance, changed the code so easily leverage it in feature importance calculation. 
+For the features method, I introduced the new score function to compute the feature importance, changed the code so easily leverage it in feature importance calculation. I also added some convenient functions to the image models.
 
 ## Graphs experiments 
 
